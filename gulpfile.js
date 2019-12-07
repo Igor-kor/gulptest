@@ -3,10 +3,14 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var twig = require('gulp-twig');
 var browserSync = require('browser-sync');
+var pages = ['index','about'];
+
+
 gulp.task('sass', function () {
     return gulp.src('./src/sass/**/*.scss')
 .pipe(sass().on('error', sass.logError))
 .pipe(gulp.dest('./public/css/'))
+.pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('watch', function () {
@@ -14,30 +18,35 @@ gulp.task('watch', function () {
     gulp.watch('./src/twig/**/*.twig', gulp.series('twig'));
 });
 
-
-
-gulp.task('browser-sync', function () {
+gulp.task('browser-sync', function ( ) {
     var files = [
-        './public/index.html',
         './public/**/*.css',
         './public/**/*.png',
         './public/**/*.js'
     ];
-
+    for (var i = 0; i < pages.length; i++) {
+        files.push('./public/' + pages[i] + '.html');
+    }
+    console.log(pages);
     browserSync.init(files, {
         server: {
-            baseDir: './public/'
+            baseDir: './public/',
         }
     });
 });
 
 gulp.task('twig', function () {
-    return gulp.src(['./src/twig/index.twig'])
+    var files = [];
+    for (var i = 0; i < pages.length; i++){
+        files.push('./src/twig/'+pages[i]+'.twig');
+    }
+    return gulp.src(files)
     // Stay live and reload on error
         .pipe(twig())
         .on('error', function (err) {
             process.stderr.write(err.message + '\n');
             this.emit('end');
         })
-        .pipe(gulp.dest('./public/'));
+        .pipe(gulp.dest('./public/'))
+        .pipe(browserSync.reload({stream: true}));
 });
