@@ -1,4 +1,5 @@
 {# layout.twig #}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +8,18 @@
     <meta name="description" content="A demo of how to use gulp-twig"/>
     <meta name="author" content="Simon de Turck"/>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="main.css" type="text/css">
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
     <title>{{ title }}</title>
-
 </head>
+
 <body>
 <section>
     {% block page %}{% endblock %}
-    {% block page %}{% endblock %}
+    {% block blok1 %}{% endblock %}
+    <div class="class2">
+        {% block blok1 %}{% endblock %}
+    </div>
 </section>
+
 </body>
 </html>

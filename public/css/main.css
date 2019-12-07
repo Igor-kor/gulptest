@@ -1,4 +1,18 @@
 body {
   font: 100% Helvetica, sans-serif;
   color: #333;
-  background-color: #00dc45; }
+  background-color: #b55fdc; }
+
+.blok1 {
+  background-color: crimson;
+  display: inline-block;
+  width: 100px;
+  margin-bottom: 20px;
+  margin-right: 20px; }
+
+.class2 .blok1 {
+  background-color: #dbdc1c; }
+
+@media screen and (min-width: 720px) {
+  .class2 .blok1 {
+    background-color: #00dc22; } }

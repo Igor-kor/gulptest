@@ -1,8 +1,32 @@
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
+$paddings: 20px;
 
 body {
   font: 100% $font-stack;
   color: $primary-color;
-  background-color: #00dcdb;
+  background-color: #b55fdc;
+}
+
+.blok1{
+  background-color: crimson;
+  display: inline-block;
+  width: 100px;
+  margin-bottom: $paddings;
+  margin-right: $paddings;
+}
+
+.class2{
+  .blok1{
+    background-color: #dbdc1c;
+  }
+}
+
+@media screen  and (min-width: 720px) {
+
+  .class2{
+    .blok1{
+      background-color: #00dc22;
+    }
+  }
 }
